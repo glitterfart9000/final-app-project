@@ -1,5 +1,3 @@
-const { createElement } = require("react");
-
 function addExpense() {
     // gets amount of $ the user entered
     let amountBox = document.getElementById("amount");
@@ -23,12 +21,31 @@ function addExpense() {
     descBox.value = "";
     dateBox.value = "";
 
-    // figure out how to remove message and add data to table
-    let message = document.getElementsByClassName("empty-message");
-    message.value.remove();
-    let expensesRow = document.getElementById("expensesList");
+    // remove message under 'recent expenses'
+    let message = document.getElementById("empty-message");
+    if (message = ) {
+        message.remove();
+    }
+
+    // add table data for 'date'
+    let expensesRow = document.getElementById("expenses-body");
+    let dateData = document.createElement("td");
+    dateData.innerHTML = userDate;
+    expensesRow.appendChild(dateData);
+
+    // add table data for 'category'
+    let categoryData = document.createElement("td");
+    categoryData.innerHTML = userCategory;
+    expensesRow.appendChild(categoryData);
+
+    // add table data for 'description'
+    let descData = document.createElement("td");
+    descData.innerHTML = userDesc;
+    expensesRow.appendChild(descData);
+
+    // add table data for 'amount'
     let expenseAmtData = document.createElement("td");
-    expenseAmtData.value = userAmount;
+    expenseAmtData.innerHTML = userAmount;
     expensesRow.appendChild(expenseAmtData);
 }
 
