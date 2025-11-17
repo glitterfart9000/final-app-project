@@ -15,39 +15,46 @@ function addExpense() {
     let dateBox = document.getElementById("date");
     let userDate = dateBox.value;
 
+    // check if any values are empty
+    if (userAmount == "" || userCategory == "" || userDesc == "" || userDate == ""){
+        alert("Please fill out the empty fields.");
+        return;
+    }
+
     // clear text boxes
     amountBox.value = "";
     categoryBox.value = "";
     descBox.value = "";
     dateBox.value = "";
 
-    // remove message under 'recent expenses'
-    let message = document.getElementById("empty-message");
-    if (message = ) {
-        message.remove();
+    let expensesRow = document.getElementById("expenses-body");
+    if (expensesRow) {
+        expensesRow.remove();
     }
 
+    // add new row
+    let newExpenseRow = document.createElement("tr");
+    let tableBody = document.getElementById("expensesList");
+
     // add table data for 'date'
-    let expensesRow = document.getElementById("expenses-body");
     let dateData = document.createElement("td");
     dateData.innerHTML = userDate;
-    expensesRow.appendChild(dateData);
+    newExpenseRow.appendChild(dateData);
 
     // add table data for 'category'
     let categoryData = document.createElement("td");
     categoryData.innerHTML = userCategory;
-    expensesRow.appendChild(categoryData);
+    newExpenseRow.appendChild(categoryData);
 
     // add table data for 'description'
     let descData = document.createElement("td");
     descData.innerHTML = userDesc;
-    expensesRow.appendChild(descData);
+    newExpenseRow.appendChild(descData);
 
     // add table data for 'amount'
     let expenseAmtData = document.createElement("td");
     expenseAmtData.innerHTML = userAmount;
-    expensesRow.appendChild(expenseAmtData);
+    newExpenseRow.appendChild(expenseAmtData);
+    
+    tableBody.appendChild(newExpenseRow);
 }
-
-
-
