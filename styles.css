@@ -16,6 +16,18 @@ body {
   background-size: 100% 28px, 28px 100%;
 }
 
+.button {
+    width: 65px;
+    margin: 10px;
+    padding: 2px;
+    border-radius: 7px;
+    background-color: inherit;
+    border: 2px solid rgb(172, 69, 115);
+    color: whitesmoke;
+    font-size: 15px;
+    font-family: 'Trebuchet MS', 'Segoe UI', Roboto, sans-serif;
+}
+
 .container {
   max-width: 980px;
   margin: 0 auto;

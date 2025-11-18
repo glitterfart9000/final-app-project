@@ -34,6 +34,7 @@ function addExpense() {
 
     // add new row
     let newExpenseRow = document.createElement("tr");
+    newExpenseRow.id = "row" + 1;
     let tableBody = document.getElementById("expensesList");
 
     // add table data for 'date'
@@ -55,6 +56,47 @@ function addExpense() {
     let expenseAmtData = document.createElement("td");
     expenseAmtData.innerHTML = userAmount;
     newExpenseRow.appendChild(expenseAmtData);
-    
+
+    // add delete button
+    let deleteButton = document.createElement("button");
+    deleteButton.addEventListener("click", removeTask)
+    deleteButton.classList.add("button");
+    deleteButton.innerText = "Delete";
+    newExpenseRow.appendChild(deleteButton);
+
+    // add to table
     tableBody.appendChild(newExpenseRow);
+
+    let idNum = generateIdNum();
+
+    // save to local storage
+    localStorage.setItem("row" + idNum, userDate);
+    localStorage.setItem("row" + idNum, userCategory);
+    localStorage.setItem("row" + idNum, userDesc);
+    localStorage.setItem("row" + idNum, userAmount);
+}
+
+function generateIdNum() {
+    // iterate through local storage
+    // check for first available id number
+    let idNum = 0;
+    while (localStorage.getItem("row" + idNum) != null) {
+        idNum++;
+    }
+    return idNum;
+}
+
+
+function removeTask(event) {
+    // get id of button
+    let expenseId = event.target.id; // e.g. checkbox10
+
+    // get id number from button id
+    let idNum = expenseId.substring(8);
+
+    // get expense row by id
+    let expenseRow = document.getElementById("row" + 1);
+
+    // remove the expense row from table
+    expenseRow.remove();
 }
