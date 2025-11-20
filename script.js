@@ -32,9 +32,15 @@ function addExpense() {
         expensesRow.remove();
     }
 
+    let idNum = generateIdNum();
+
+    createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum);
+}
+
+function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
     // add new row
     let newExpenseRow = document.createElement("tr");
-    newExpenseRow.id = "row" + 1;
+    newExpenseRow.id = "row" + idNum;
     let tableBody = document.getElementById("expensesList");
 
     // add table data for 'date'
@@ -67,13 +73,8 @@ function addExpense() {
     // add to table
     tableBody.appendChild(newExpenseRow);
 
-    let idNum = generateIdNum();
-
     // save to local storage
-    localStorage.setItem("row" + idNum, userDate);
-    localStorage.setItem("row" + idNum, userCategory);
-    localStorage.setItem("row" + idNum, userDesc);
-    localStorage.setItem("row" + idNum, userAmount);
+    localStorage.setItem("row" + idNum, newExpenseRow);
 }
 
 function generateIdNum() {
@@ -95,8 +96,20 @@ function removeTask(event) {
     let idNum = expenseId.substring(8);
 
     // get expense row by id
-    let expenseRow = document.getElementById("row" + 1);
+    let expenseRow = document.getElementById("row" + idNum);
 
     // remove the expense row from table
     expenseRow.remove();
 }
+
+function loadTasks() {
+    // get each task from local storage
+    for (let i = 0; i < localStorage.length; i++){
+        let key = localStorage.key(i);
+        let expense = localStorage.getItem(key);
+        // create task divs for each task
+        addExpense(expense, key.substring(3));
+    }
+}
+
+loadTasks();
