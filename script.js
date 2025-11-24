@@ -33,6 +33,8 @@ function addExpense() {
     }
 
     let idNum = generateIdNum();
+    // line 37 ai
+    localStorage.setItem("row" + idNum, idNum);
 
     createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum);
 
@@ -85,44 +87,50 @@ function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
 
     // add delete button
     let deleteButton = document.createElement("button");
-    deleteButton.addEventListener("click", removeTask)
+    deleteButton.addEventListener("click", removeRow)
     deleteButton.classList.add("button");
     deleteButton.innerText = "Delete";
     newExpenseRow.appendChild(deleteButton);
-
+    deleteButton.id = "dlt" + idNum;
     // add to table
     tableBody.appendChild(newExpenseRow);
 
 }
-
 
 function removeRow(event) {
     // get id of button
     let expenseId = event.target.id;
 
     // get id number from button id
-    let idNum = expenseId.substring(8);
+    let idNum = expenseId.substring(3);
 
     // get expense row by id
     let expenseRow = document.getElementById("row" + idNum);
 
     // remove the expense row from table
     expenseRow.remove();
+    localStorage.removeItem(expenseRow.id);
 }
 
 function loadRows() {
     // get each task from local storage
     for (let i = 0; i < localStorage.length; i++){
-        let key0 = localStorage.key(i);
-        let key1 = localStorage.key(i+1);
-        let key2 = localStorage.key(i+2);
-        let key3 = localStorage.key(i+3);
-        let amount = localStorage.getItem(key0);
-        let category = localStorage.getItem(key1);
-        let desc = localStorage.getItem(key2);
-        let date = localStorage.getItem(key3);
-        // create task divs for each task
-        createExpenseRow(amount, category, desc, date, key0.substring(3));
+        let key = localStorage.key(i);
+        if (document.getElementById("row" + key.substring(3))){
+        // line 120 ai
+        continue;
+        }
+        // line 123 ai
+        if (key.startsWith("row")) {
+            let amount = localStorage.getItem("exp" + key.substring(3));
+            let category = localStorage.getItem("cat" + key.substring(3));
+            let desc = localStorage.getItem("des" + key.substring(3));
+            let date = localStorage.getItem("dat" + key.substring(3));
+            if (amount && category && desc && date) {
+                // create expense rows for each expense
+                createExpenseRow(amount, category, desc, date, key.substring(3));
+            }
+        }
     }
 }
 
