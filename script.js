@@ -33,16 +33,16 @@ function addExpense() {
     }
 
     let idNum = generateIdNum();
-    // line 37 ai
+    // ai
     localStorage.setItem("row" + idNum, idNum);
-
-    createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum);
 
     // save to local storage
     localStorage.setItem("exp" + idNum, userAmount);
     localStorage.setItem("cat" + idNum, userCategory);
     localStorage.setItem("des" + idNum, userDesc);
     localStorage.setItem("dat" + idNum, userDate);
+
+    createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum);
 }
 
 function generateIdNum() {
@@ -54,6 +54,8 @@ function generateIdNum() {
     }
     return idNum;
 }
+
+let totalSpent = 0;
 
 function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
     // add new row
@@ -95,7 +97,14 @@ function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
     // add to table
     tableBody.appendChild(newExpenseRow);
 
+    // update total spent
+    let totalSpentBox = document.getElementById("totalAmount");
+    let spent = parseInt(localStorage.getItem("exp" + idNum));
+    totalSpent += spent;
+    totalSpentBox.innerHTML = ("$" + totalSpent + ".00");
 }
+
+
 
 function removeRow(event) {
     // get id of button
@@ -117,10 +126,10 @@ function loadRows() {
     for (let i = 0; i < localStorage.length; i++){
         let key = localStorage.key(i);
         if (document.getElementById("row" + key.substring(3))){
-        // line 120 ai
+        // ai
         continue;
         }
-        // line 123 ai
+        // ai
         if (key.startsWith("row")) {
             let amount = localStorage.getItem("exp" + key.substring(3));
             let category = localStorage.getItem("cat" + key.substring(3));
