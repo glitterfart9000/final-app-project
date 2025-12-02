@@ -55,7 +55,7 @@ function generateIdNum() {
     return idNum;
 }
 
-let totalSpent = 0;
+let totalSpent = 0.0;
 
 function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
     // add new row
@@ -92,19 +92,37 @@ function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
     deleteButton.addEventListener("click", removeRow)
     deleteButton.classList.add("button");
     deleteButton.innerText = "Delete";
-    newExpenseRow.appendChild(deleteButton);
     deleteButton.id = "dlt" + idNum;
+    newExpenseRow.appendChild(deleteButton);
     // add to table
     tableBody.appendChild(newExpenseRow);
 
     // update total spent
     let totalSpentBox = document.getElementById("totalAmount");
-    let spent = parseInt(localStorage.getItem("exp" + idNum));
+    let spent = parseFloat(localStorage.getItem("exp" + idNum));
     totalSpent += spent;
-    totalSpentBox.innerHTML = ("$" + totalSpent + ".00");
+    totalSpentBox.innerHTML = ("$" + totalSpent.toFixed(2));
+
+    // add category row
+    if (userCategory == "Food"){
+        addCategoryRow(0);
+    }
+    else if (userCategory == "Transport"){
+        addCategoryRow(1);
+    }
+    else if (userCategory == "Entertainment"){
+        addCategoryRow(2);
+    }
+    else if (userCategory == "Shopping"){
+        addCategoryRow(3);
+    }
+    else if (userCategory == "Utilities"){
+        addCategoryRow(4);
+    }
+    else (userCategory == "Other"){
+        addCategoryRow(5);
+    }
 }
-
-
 
 function removeRow(event) {
     // get id of button
@@ -140,6 +158,12 @@ function loadRows() {
                 createExpenseRow(amount, category, desc, date, key.substring(3));
             }
         }
+    }
+}
+
+function addCategoryRow(category) {
+    if (category == 0){
+        console.log("food");
     }
 }
 
