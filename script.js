@@ -119,7 +119,7 @@ function createExpenseRow(userAmount, userCategory, userDesc, userDate, idNum) {
     else if (userCategory == "Utilities"){
         addCategoryRow(4);
     }
-    else (userCategory == "Other"){
+    else if (userCategory == "Other"){
         addCategoryRow(5);
     }
 }
@@ -161,9 +161,58 @@ function loadRows() {
     }
 }
 
+let categoryTable = document.createElement("table");
+
 function addCategoryRow(category) {
+    // make headers for each category
+    let categoryTableHead = document.createElement("thead");
+    let categoryHeader = document.createElement("th");
+    let newCategoryRow = document.createElement("tr");
+    let categoryBreakdown = document.getElementById("breakdown");
+    categoryBreakdown.appendChild(categoryTable);
+
+    // append the new appropiate header to the table
     if (category == 0){
-        console.log("food");
+        categoryHeader.innerText= "Food";
+        categoryHeader.classList.add("category-heading");
+        newCategoryRow.appendChild(categoryHeader);
+        categoryTableHead.appendChild(newCategoryRow);
+        categoryTable.appendChild(categoryTableHead);
+    }
+    else if (category == 1){
+        categoryHeader.innerText= "Transport";
+        categoryHeader.classList.add("category-heading");
+        newCategoryRow.appendChild(categoryHeader);
+        categoryTableHead.appendChild(newCategoryRow);
+        categoryTable.appendChild(categoryTableHead);
+    }
+    else if (category == 2){
+        categoryHeader.innerText= "Entertainment";
+        categoryHeader.classList.add("category-heading");
+        newCategoryRow.appendChild(categoryHeader);
+        categoryTableHead.appendChild(newCategoryRow);
+        categoryTable.appendChild(categoryTableHead);
+    }
+    else if (category == 3){
+        categoryHeader.innerText= "Shopping";
+        categoryHeader.classList.add("category-heading");
+        newCategoryRow.appendChild(categoryHeader);
+        categoryTableHead.appendChild(newCategoryRow);
+        categoryTable.appendChild(categoryTableHead);
+    }
+    else if (category == 4){
+        categoryHeader.innerText= "Utilities";
+        newCategoryRow.appendChild(categoryHeader);
+        categoryHeader.classList.add("category-heading");
+        categoryTableHead.appendChild(newCategoryRow);
+        categoryTable.appendChild(categoryTableHead);
+    }
+    else if (category == 5){
+        categoryHeader.innerText= "Other";
+        categoryHeader.classList.add("category-heading");
+        newCategoryRow.appendChild(categoryHeader);
+        categoryTableHead.appendChild(newCategoryRow);
+        categoryTable.appendChild(categoryTableHead);
     }
 }
 

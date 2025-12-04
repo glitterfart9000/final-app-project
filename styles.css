@@ -203,6 +203,15 @@ select:focus {
   font-size: 0.9rem
 }
 
+.category-heading {
+  background: linear-gradient(90deg, #d3a254,#62b5af );
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 800;
+  font-size: 0.9rem
+}
+
 .expenses-table tbody td {
   padding: 12px;
   border-bottom: 1px dashed rgba(155, 227, 255, 0.04);
