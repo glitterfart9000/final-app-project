@@ -214,6 +214,20 @@ function addCategoryRow(category) {
         categoryTableHead.appendChild(newCategoryRow);
         categoryTable.appendChild(categoryTableHead);
     }
+    spendingAmounts();
 }
 
+function spendingAmounts(){
+    for (let i = 0; i < localStorage.length / 5; i++){
+        let expKey = "exp" + i;
+        let catKey = "cat" + i;
+        if (expKey.startsWith("exp")){
+            let idNum = expKey.substring(3);
+            let expense = "exp" + idNum;
+            let category = "cat" + idNum;
+            let storageExpense = localStorage.getItem(expense);
+            let storageCategory = localStorage.getItem(category);
+        }
+    }
+}
 loadRows();
