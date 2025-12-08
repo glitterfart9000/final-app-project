@@ -170,6 +170,7 @@ function addCategoryRow(category) {
     let newCategoryRow = document.createElement("tr");
     let categoryBreakdown = document.getElementById("breakdown");
     categoryBreakdown.appendChild(categoryTable);
+    let expenseTotals = spendingAmounts();
 
     // append the new appropiate header to the table
     if (category == 0){
@@ -214,20 +215,35 @@ function addCategoryRow(category) {
         categoryTableHead.appendChild(newCategoryRow);
         categoryTable.appendChild(categoryTableHead);
     }
-    spendingAmounts();
 }
 
 function spendingAmounts(){
+    let categoryArr = [0, 0, 0, 0, 0, 0];
     for (let i = 0; i < localStorage.length / 5; i++){
         let expKey = "exp" + i;
         let catKey = "cat" + i;
-        if (expKey.startsWith("exp")){
-            let idNum = expKey.substring(3);
-            let expense = "exp" + idNum;
-            let category = "cat" + idNum;
-            let storageExpense = localStorage.getItem(expense);
-            let storageCategory = localStorage.getItem(category);
+        let storageExpense = parseFloat(localStorage.getItem(expKey));
+        let storageCategory = localStorage.getItem(catKey);
+        if (storageCategory == "Food"){
+            categoryArr[0] += storageExpense;
+        }
+        else if (storageCategory == "Transport"){
+            categoryArr[1] += storageExpense;
+        }
+        else if (storageCategory == "Entertainment"){
+            categoryArr[2] += storageExpense;
+        }
+        else if (storageCategory == "Shopping"){
+            categoryArr[3] += storageExpense;
+        }
+        else if (storageCategory == "Utilities"){
+            categoryArr[4] += storageExpense;
+        }
+        else if (storageCategory == "Other"){
+            categoryArr[5] += storageExpense;
         }
     }
+    return categoryArr;
 }
+
 loadRows();
