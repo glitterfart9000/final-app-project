@@ -203,13 +203,15 @@ select:focus {
   font-size: 0.9rem
 }
 
-.category-heading {
-  background: linear-gradient(90deg, #d3a254,#62b5af );
+.categorySpentDiv {
+  background: linear-gradient(90deg, #e2b257, #94d25e);
   color: white;
   padding: 12px;
-  text-align: left;
   font-weight: 800;
-  font-size: 0.9rem
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .expenses-table tbody td {
@@ -237,6 +239,10 @@ select:focus {
   padding: 6px 8px;
   border-radius: 6px;
   cursor: pointer
+}
+
+.category-right {
+  text-align: right;
 }
 
 /* Responsive */
