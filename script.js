@@ -176,7 +176,7 @@ function addCategoryRow(category) {
     if (category == 0){
         if (!document.getElementById("Food")){
             categoryData.innerText = "Food";
-            amountData.innerText = expenseTotals[0];
+            amountData.innerText = parseFloat(expenseTotals[0]);
             categorySpentDiv.id = "Food";
             categorySpentDiv.appendChild(categoryData);
             categorySpentDiv.appendChild(amountData);
@@ -186,7 +186,7 @@ function addCategoryRow(category) {
     else if (category == 1){
         if (!document.getElementById("Transport")){
             categoryData.innerText = "Transport";
-            amountData.innerText = expenseTotals[1];
+            amountData.innerText = parseFloat(expenseTotals[1]);
             categorySpentDiv.id = "Transport";
             categorySpentDiv.appendChild(categoryData);
             categorySpentDiv.appendChild(amountData);
@@ -196,7 +196,7 @@ function addCategoryRow(category) {
     else if (category == 2){
         if (!document.getElementById("Entertainment")){
             categoryData.innerText = "Entertainment";
-            amountData.innerText = expenseTotals[2];
+            amountData.innerText = parseFloat(expenseTotals[2]);
             categorySpentDiv.id = "Entertainment";
             categorySpentDiv.appendChild(categoryData);
             categorySpentDiv.appendChild(amountData);
@@ -206,7 +206,7 @@ function addCategoryRow(category) {
     else if (category == 3){
         if (!document.getElementById("Shopping")){
             categoryData.innerText = "Shopping";
-            amountData.innerText = expenseTotals[3];
+            amountData.innerText = parseFloat(expenseTotals[3]);
             categorySpentDiv.id = "Shopping";
             categorySpentDiv.appendChild(categoryData);
             categorySpentDiv.appendChild(amountData);
@@ -216,7 +216,7 @@ function addCategoryRow(category) {
     else if (category == 4){
         if (!document.getElementById("Utilities")){
             categoryData.innerText = "Utilities";
-            amountData.innerText = expenseTotals[4];
+            amountData.innerText = parseFloat(expenseTotals[4]);
             categorySpentDiv.id = "Utilities";
             categorySpentDiv.appendChild(categoryData);
             categorySpentDiv.appendChild(amountData);
@@ -226,7 +226,7 @@ function addCategoryRow(category) {
     else if (category == 5){
         if (!document.getElementById("Other")){
             categoryData.innerText = "Other";
-            amountData.innerText = expenseTotals[5];
+            amountData.innerText = parseFloat(expenseTotals[5]);
             categorySpentDiv.id = "Other";
             categorySpentDiv.appendChild(categoryData);
             categorySpentDiv.appendChild(amountData);

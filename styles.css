@@ -212,6 +212,10 @@ select:focus {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* make each category div span the full width of the grid so items stack vertically */
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-bottom: 12px;
 }
 
 .expenses-table tbody td {
